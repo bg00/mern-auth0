@@ -1,13 +1,64 @@
-# Auth0 React Samples
+# Sample 02 - Calling an External API
 
-[![CircleCI](https://circleci.com/gh/auth0-samples/auth0-react-samples.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-react-samples)
+For this scenario, an API endpoint `/api/external` has been included in the Express server that requires a bearer token to be supplied as a bearer token in the `Authorization` header (as provided during the authentication flow). This uses the [`express-jwt`](https://github.com/auth0/express-jwt) middleware to validate the token against the identifier of your API as set up in the Auth0 dashboard, as well as checking that the signature is valid.
 
-This is the sample code for the [Auth0 React Quickstart](https://auth0.com/docs/quickstart/spa/react) using [auth0-spa-js](https://github.com/auth0/auth0-spa-js).
+## Project setup
 
-There are two sample applications:
+Use `yarn` or `npm` to install the project dependencies:
 
-- [Login](./01-Login) — demonstrates logging in and viewing profile information
-- [Calling an API](./02-Calling-an-API) — demonstrates how to call a third-party API using access tokens
+```bash
+# Using npm..
+npm install
+
+# Using yarn..
+yarn install
+```
+
+### Configuration
+
+The project needs to be configured with your Auth0 domain and client ID in order for the authentication flow to work.
+
+To do this, first copy `src/auth_config.json.example` into a new file in the same folder called `src/auth_config.json`, and replace the values with your own Auth0 application credentials, and optionally the base URLs of your application and API:
+
+```json
+{
+  "domain": "{YOUR AUTH0 DOMAIN}",
+  "clientId": "{YOUR AUTH0 CLIENT ID}",
+  "audience": "{YOUR AUTH0 API_IDENTIFIER}",
+  "appOrigin": "{OPTIONAL: THE BASE URL OF YOUR APPLICATION (default: http://localhost:3000)}",
+  "apiOrigin": "{OPTIONAL: THE BASE URL OF YOUR API (default: http://localhost:3001)}"
+}
+```
+
+### Compiles and hot-reloads for development
+
+This compiles and serves the React app and starts the backend API server on port 3001. 
+
+```bash
+npm run dev
+```
+
+## Deployment
+
+### Compiles and minifies for production
+
+```bash
+npm run build
+```
+
+### Docker build
+
+To build and run the Docker image, run `exec.sh`, or `exec.ps1` on Windows.
+
+### Run your tests
+
+```bash
+npm run test
+```
+
+## Frequently Asked Questions
+
+We are compiling a list of questions and answers regarding the new JavaScript SDK - if you're having issues running the sample applications, [check the FAQ](https://github.com/auth0/auth0-spa-js/blob/master/FAQ.md)!
 
 ## What is Auth0?
 
@@ -35,4 +86,4 @@ If you have found a bug or if you have a feature request, please report them at 
 
 ## License
 
-This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for more info.
+This project is licensed under the MIT license. See the [LICENSE](../LICENSE) file for more info.
